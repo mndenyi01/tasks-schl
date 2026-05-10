@@ -22,7 +22,3 @@ As well as Input - that takes the image array - and output layer that uses a `So
 **Test Accuracy:** `0.9761 -> 97.6%`
 
 - *Note that:* Exact Training and Test scores differ on each execution cycle.
-
-## Further Modifications
-- This model can be incoorporated into a webapp to <br> take images and scale them down to 28*28 and predict the digit.
-- Learning resource on other ML projects that have Neural Networks as the final model selected.

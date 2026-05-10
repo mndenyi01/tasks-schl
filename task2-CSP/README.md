@@ -1,0 +1,113 @@
+🦘Australia Regions 'greedyly' colouring.
+-----------------------------------------
+
+## Overview
+This project analyzes Australia regions using geographical data from GADM (https://gadm.org/download_country.html).<br> The analysis includes exploratory data visualization then graph coloring to assign distinct colors to adjacent regions.
+
+## Virtual Environment setup and libraries used
+
+### Imported Libraries
+The following libraries are used across the notebook files:
+- `geopandas` (imported as `gpd`): For handling geospatial data and GeoJSON files.
+- `networkx` (imported as `nx`): For graph creation and coloring algorithms.
+- `matplotlib.pyplot` (imported as `plt`): For plotting and visualization.
+
+- These should be installed in a virtual environment in the root folder - as my recommendation.
+- If you have a virtual environments active, you should see another folder-mostly named `venv`- in your root folder.
+- Follow instructions below to create one, if you wish.
+
+### Virtual Environment(venv) setup
+1. Navigate to the root folder, in the root folder(where all the folders and README file are installed).
+2. In your terminal, type `python -m venv venv` then:-
+  - For Bash users: `source venv/Scripts/activate`
+  - For cmd users: `venv\Scripts\activate.bat`
+  - For Powershell users: `venv\Scripts\Activate.ps1`
+- After the command has run succesfully for your terminal choice above, proceed to install the said libraries.
+3. `pip install geopandas networkx matplotlib ipykernel`is the command to install the main libraies, the rest as in `requirements.txt` are dependancies.
+- Note that 'ipykernel' is for running of the jupyter notebooks.
+
+## Notebook and Python script Summaries
+
+### aus_idk.ipynb: Graph Coloring for Australia Regions
+This notebook implements graph coloring step-wise to solve the problem of assigning colors to Australia regions such that no two adjacent regions share the same color.<br>
+Similar operations here are copied to `code/idk.ipynb` with further modifications to fit the project objective.
+
+1. **Data Loading and Preparation**: Loads the Australia regions data from `data/aus_clean.json` using GeoPandas.
+2. **Neighbor Detection**: Identifies neighboring regions by checking geometric intersections between polygons.
+3. **Helper Graph Construction**: Creates an undirected graph using NetworkX where each region is a node, and edges connect neighboring regions, so that it can be mapped to the original map later.
+4. **Graph Coloring**: Applies the greedy coloring algorithm with the DSATUR strategy to assign colors to nodes.
+5. **Visualization**: Plots the new Australia regions map with each region colored according to the graph coloring result.
+
+### aus_plt.py: Python Script for Australia Regions Coloring
+This Python script performs the same graph coloring operations as the notebook but in a standalone script format, with a specific color palette (red, blue, green).
+
+1. **Data Loading**: Loads the Australia regions data.
+2. **Neighbor Detection**: Finds adjacent regions.
+3. **Graph Creation and Coloring**: Builds the graph and applies greedy coloring.
+4. **Color Mapping**: Maps to predefined colors.
+5. **Plotting**: Displays the colored map.
+
+## Output to be expected
+
+When running `aus_plt.py`, the following outputs are generated:
+
+- **Visualization**: Displays a matplotlib plot window showing the colored Australia's 5 region map.
+
+![Australia's 5 main region Coloured Map](Australia-q/output/aus_coloured.png)
+
+Note: The plot is displayed in a GUI window and does not save to a file by default. To save the plot, you can modify the script to include `plt.savefig('output/aus_coloured.png')` before `plt.show()`.
+
+
+🦓Nairobi Sub-Counties 'greedyly' colouring.
+-----------------------------------------
+
+## Overview
+This project analyzes Nairobi sub-counties using geographical data from GADM (https://gadm.org/download_country.html).<br> The analysis includes exploratory data visualization and graph coloring to assign distinct colors to adjacent sub-counties.
+
+## Notebook Summaries
+
+### eda1.ipynb: Nairobi Sub-Counties Polygon Plot
+This notebook performs initial exploratory data analysis on the Nairobi sub-counties dataset.
+Its main reason is to first see the dataset and practice loading it before colouring its sub-counties - essentially practice.
+Similar operations here are copied to `code/idk.ipynb` with further modifications to fit the project objective.
+
+1. **Data Loading**: Reads the Kenya administrative boundaries from `data/gadm41_KEN_2.json` using GeoPandas.
+2. **Data Inspection**: Displays the first few rows of the dataset and checks the total number of records.
+3. **Filtering**: Extracts only the records for Nairobi county (NAME_1 == "Nairobi").
+4. **Basic Plotting**: Creates a simple polygon plot of Nairobi sub-counties with black edges.
+5. **Labeled Plotting**: Enhances the plot by adding text labels for each sub-county name at their centroids.
+
+### idk.ipynb: Graph Coloring for Sub-Counties
+This notebook implements graph coloring to solve the problem of assigning colors to Nairobi sub-counties such that no two adjacent sub-counties share the same color. This is useful in advanced map visualization and thematic mapping.
+
+1. **Data Loading and Preparation**: Loads the Kenya GeoJSON data, filters for Nairobi, and resets the index.
+2. **Neighbor Detection**: Identifies neighboring sub-counties by checking geometric intersections between polygons.
+3. **Helper Graph Construction**: Creates an undirected graph using NetworkX where each sub-county is a node, and edges connect neighboring sub-counties.
+4. **Graph Coloring**: Applies the greedy coloring algorithm with the DSATUR strategy to assign colors to nodes.
+5. **Color Mapping**: Maps the numerical color indices to a predefined color palette (green, blue, orange, pink).
+6. **Colored Visualization**: Plots the Nairobi sub-counties map with each sub-county colored according to the graph coloring result, using a categorical colormap and black edges for boundaries.
+
+## Script Implementation: The main file (`idk.py`)
+
+The code from the `code/idk.ipynb` notebook was carefully incorporated into the standalone Python script `code/idk.py`. Key adaptations include:
+
+- Combining all code cells into a single executable script.
+- Adding detailed comments for clarity and maintainability.
+- Removing interactive elements (like uncommented plot shows) and ensuring the script runs end-to-end.
+- Preserving the core logic: data loading, neighbor detection, graph construction, coloring, and visualization.
+
+The script can be run with `python idk.py` from the project(or this file) root.
+
+## Output to be expected
+
+When running `idk.py`, the following outputs are generated:
+
+- **Console Output**: Prints the list of Nairobi sub-county names to the console with new indexes.
+- **Visualization**: Displays an interactive matplotlib plot window showing the colored Nairobi sub-counties map. The plot includes a legend titled "Nairobi Sub-Counties: Now with colors!!".
+
+![Nairobi Sub-counties Coloured Map](Nairobi-q/output/Colored-map.png)
+
+Note: The plot is displayed in a GUI window and does not save to a file by default. To save the plot, you can modify the script to include `plt.savefig('output/output.png')` before `plt.show()`.
+
+Author📔: Anthony Mndenyi
+------------------------
